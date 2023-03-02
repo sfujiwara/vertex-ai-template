@@ -1,0 +1,15 @@
+# Terraform
+.terraform
+.terraform.*
+terraform.*
+
+# Python
+*.pyc
+
+# JetBrains
+.idea
+
+# Others
+~
+pipelines
+*.zip

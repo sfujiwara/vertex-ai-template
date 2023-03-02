@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  trainer:
+    image: us-central1-docker.pkg.dev/${PROJECT}/docker/trainer:${TAG:-latest}
+    build:
+      context: components/trainer
+      dockerfile: Dockerfile
