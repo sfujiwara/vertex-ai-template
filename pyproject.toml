@@ -7,7 +7,7 @@ authors = ["sfujiwara <shuhei.fujiwara@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7, <3.11"
-kfp = "2.0.0b13"
+kfp = "^2.0.0"
 functions-framework = "^3.3.0"
 
 [tool.poetry.dev-dependencies]
