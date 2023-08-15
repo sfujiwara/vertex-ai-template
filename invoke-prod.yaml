@@ -1,0 +1,5 @@
+run:
+  echo: true
+  env:
+    name: prod
+    project: project-prod

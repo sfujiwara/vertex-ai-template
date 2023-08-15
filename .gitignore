@@ -13,3 +13,4 @@ terraform.*
 ~
 pipelines
 *.zip
+.DS_Store

@@ -51,13 +51,13 @@ inv terraform.apply
 Build Docker images for Vertex AI Pipelines components:
 
 ```shell
-inv docker.build
+inv docker.build -f invoke-dev.yaml
 ```
 
 Push Docker images:
 
 ```shell
-inv docker.push
+inv docker.push -f invoke-dev.yaml
 ```
 
 ### Pipeline
@@ -65,11 +65,11 @@ inv docker.push
 Generate pipeline YAML with Kubeflow Pipelines SDK:
 
 ```shell
-inv pipeline.build
+inv pipeline.build -f invoke-dev.yaml
 ```
 
 Upload pipeline YAML to Google Cloud Artifact Registry:
 
 ```shell
-inv pipeline.push
+inv pipeline.push -f invoke-dev.yaml
 ```

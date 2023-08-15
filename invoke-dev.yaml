@@ -2,4 +2,4 @@ run:
   echo: true
   env:
     name: dev
-    project: YOUR_GCP_PROJECT
+    project: project-dev
