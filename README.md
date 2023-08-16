@@ -39,11 +39,11 @@ poetry shell
 Create Google Cloud Platform resources with Terraform:
 
 ```shell
-inv terraform.init
+inv terraform.init -f invoke-dev.yaml
 ```
 
 ```shell
-inv terraform.apply
+inv terraform.apply -f invoke-dev.yaml
 ```
 
 ### Docker
