@@ -23,4 +23,9 @@ resource "google_cloudfunctions2_function" "pipeline_runner" {
   labels = {
     terraform = ""
   }
+  depends_on = [
+    google_project_service.cloudbuild,
+    google_project_service.cloudfunctions,
+    google_project_service.run,
+  ]
 }

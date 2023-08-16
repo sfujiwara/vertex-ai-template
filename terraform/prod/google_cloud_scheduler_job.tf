@@ -15,4 +15,5 @@ resource "google_cloud_scheduler_job" "pipeline_trigger" {
   retry_config {
     retry_count = 5
   }
+  depends_on = [google_project_service.cloudscheduler]
 }
