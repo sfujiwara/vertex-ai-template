@@ -7,11 +7,11 @@ from tasks.components import Evaluator, Trainer
 
 def gen_pipeline_fn(project: str):
     @kfp.dsl.pipeline(name="vertex-ai-template")
-    def pipeline_fn(dataset: str):
-        trainer_task = Trainer(project=project).task(dataset=dataset)
+    def pipeline_fn(timestamp: str):
+        trainer_task = Trainer(project=project).task(timestamp=timestamp)
         evaluator_task = Evaluator(project=project).task(
             model=trainer_task.model,
-            dataset="test",
+            timestamp=timestamp,
         )
 
     return pipeline_fn
