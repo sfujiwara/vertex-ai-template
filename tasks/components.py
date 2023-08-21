@@ -1,16 +1,23 @@
 from kfp.components import load_component_from_text
 import kfp
 import yaml
-from kfp.dsl import Input, Output, Dataset, Model, OutputPath
+from kfp import dsl
+from kfp.dsl import Input, Model, OutputPath
+
+
+@dsl.component
+def deployer():
+    pass
 
 
 class Evaluator:
     def __init__(self, project) -> None:
         self.image = f"us-central1-docker.pkg.dev/{project}/docker/evaluator:latest"
+        self.op = None
 
     def task(self, model, timestamp):
         @kfp.dsl.container_component
-        def evaluator(model: Input[Model], timestamp: str, result: OutputPath(bool)):
+        def evaluator(model: Input[Model], timestamp: str, deploy: OutputPath(bool)):
             container_spec = kfp.dsl.ContainerSpec(
                 image=self.image,
                 command=["inv", "evaluate"],
@@ -19,13 +26,19 @@ class Evaluator:
                     model.uri,
                     "--timestamp",
                     timestamp,
-                    "--output-param",
-                    result,
+                    "--deploy",
+                    deploy,
                 ],
             )
             return container_spec
 
-        evaluator(model=model, timestamp=timestamp)
+        self.op = evaluator(model=model, timestamp=timestamp)
+
+        return self
+
+    @property
+    def deploy(self):
+        return self.op.output
 
 
 class Trainer:

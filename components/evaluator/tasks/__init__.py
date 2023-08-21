@@ -3,7 +3,7 @@ import invoke
 
 
 @invoke.task
-def evaluate(ctx, model_dir, timestamp, output_param):
+def evaluate(ctx, model_dir, timestamp, deploy):
     """Execute training."""
     # Download training dataset.
     # d = download_eval_dataset(timestamp)
@@ -11,6 +11,6 @@ def evaluate(ctx, model_dir, timestamp, output_param):
     # Execute evaluation.
     # ...
 
-    Path(output_param).parent.mkdir(parents=True, exist_ok=True)
-    with open(output_param, "w") as f:
+    Path(deploy).parent.mkdir(parents=True, exist_ok=True)
+    with open(deploy, "w") as f:
         f.write(str(True))

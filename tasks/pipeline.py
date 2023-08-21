@@ -2,7 +2,7 @@ import pathlib
 from google.cloud import aiplatform
 import kfp.dsl
 from kfp import compiler
-from tasks.components import Evaluator, Trainer
+from tasks.components import deployer, Evaluator, Trainer
 
 
 def gen_pipeline_fn(project: str):
@@ -13,6 +13,8 @@ def gen_pipeline_fn(project: str):
             model=trainer_task.model,
             timestamp=timestamp,
         )
+        with kfp.dsl.Condition(evaluator_task.deploy == True):
+            deployer_task = deployer()
 
     return pipeline_fn
 
